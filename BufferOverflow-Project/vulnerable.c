@@ -13,11 +13,11 @@ void secretFunction()
     return;
 }
 
-// void getShell()
-// {
-//     printf("you got a shell!\n");
-//     system("/bin/bash");
-// }
+void getShell()
+{
+    printf("you got a shell!\n");
+    system("/usr/bin/sh");
+}
 
 // Vulnerable function
 int vuln() {
