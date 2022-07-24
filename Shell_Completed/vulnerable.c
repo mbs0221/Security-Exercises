@@ -42,3 +42,4 @@ int main(int argc, char *argv[]) {
 // cat /proc/sys/kernel/randomize_va_space 
 // echo 0 > /proc/sys/kernel/randomize_va_space
 // gcc -fno-stack-protector -z execstack -mpreferred-stack-boundary=4 -o example -ggdb example.c
+// gcc -fno-stack-protector -z execstack -mpreferred-stack-boundary=4 -o vulnerable -ggdb vulnerable.c

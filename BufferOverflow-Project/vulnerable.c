@@ -1,8 +1,10 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
 
 // Uncalled secret function
 // 00000000004005b6
+// 0000555555555159
 void secretFunction()
 {
     printf("Congratulations!\n");
@@ -10,6 +12,12 @@ void secretFunction()
 
     return;
 }
+
+// void getShell()
+// {
+//     printf("you got a shell!\n");
+//     system("/bin/bash");
+// }
 
 // Vulnerable function
 int vuln() {
