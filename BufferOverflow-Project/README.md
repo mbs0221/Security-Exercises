@@ -20,8 +20,12 @@ run < textFile.1
 > https://sourceware.org/annobin/annobin.html/Test-cf-protection.html
 > https://zoepla.github.io/2018/04/gcc的编译关于程序保护开启的选项/
 
+prepare
 ```
-gcc -no-pie -fcf-protection=none -z execstack -mpreferred-stack-boundary=4 -o ex2 -ggdb ex2.c
+# install dependency
+sudo apt install gcc-multilib
+# compile
+gcc -m32 -no-pie ex2.c -o ex2
 ```
 
 ```
@@ -63,4 +67,29 @@ gcc -no-pie -fcf-protection=none -z execstack -mpreferred-stack-boundary=4 -o ex
 
 ```
 pip install -U ipykernel
+```
+
+
+```
+gcc -no-pie -fcf-protection=none -z execstack -mpreferred-stack-boundary=4 -o vulnerable -ggdb vulnerable.c
+gcc -no-pie -fcf-protection=none -fno-stack-protector -z execstack -mpreferred-stack-boundary=4 -o vulnerable -ggdb vulnerable.c
+```
+```
+   High Address  |                 |
+                 +-----------------+
+                 | args            |
+                 +-----------------+ 
+                 | return address  | 
+    0x8(%rbp) => +-----------------+ ; push   %rbp
+                 | old rbp         |
+       (%rbp) => +-----------------+ ; mov    %rsp,%rbp
+                 | canary          |
+   -0x8(%rbp) => +-----------------+ ; mov    %fs:0x28,%rax; mov    %rax,-0x8(%rbp)
+                 |                 |
+  -0x10(%rbp) => +-----------------+
+                 | ............... |
+                 |                 |
+                 +-----------------+
+                 | &array          |
+ -0x1a0(%rbp) => +-----------------+ ; sub    $0x190,%rsp
 ```

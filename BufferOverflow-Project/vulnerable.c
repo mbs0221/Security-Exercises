@@ -30,7 +30,7 @@ int vuln() {
     gets(array);
 
     // Print user input
-    printf("You entered: %s\n", array);
+    printf("You entered: %s", array);
 
     // Return success
     return 0;

